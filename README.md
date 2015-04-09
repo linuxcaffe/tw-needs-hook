@@ -5,6 +5,6 @@ _Persistant filtering based on needs hierarchy (a.k.a. Mazlow Mode)_
 ----
 The needs-hierarchy extension for taskwarrior is based on a theory proposed by Abraham Maslow in his 1943 paper "A Theory of Human Motivation". see wikipedia: http://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs
 
-The idea for this extension is related (complimentary) to the taskwarrior "context" functionality; a persistant filter that stays in place until you change it. It is made using mostly existing task functionality, and adds a new command [+ options]; "needs".
+The idea for this extension is related (complimentary) to the taskwarrior "context" functionality; a persistant filter that stays in place until you change it. It is made using mostly existing task functionality, and adds a new command [+ options]; "needs". The needs-hierarchy is a new scale that helps categorize "importance", and self-imposing focus on the most basic needs, first. 
 
 
