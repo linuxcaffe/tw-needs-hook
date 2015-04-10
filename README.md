@@ -15,7 +15,7 @@ The target-audience for this extension is taskwarrior users who want to keep tra
 ### How it works
 
 #### need UDA
-A new UDA (User Defined Attribute) is defined, with constrained (string) values 1 - 7
+A new UDA (User Defined Attribute) is defined, with constrained (string) values 1 - 6
 The "need:" uda would be considered "required" and a value should be assigned to all tasks.
 
 Assign a value like any other uda;
