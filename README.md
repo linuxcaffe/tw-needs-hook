@@ -62,6 +62,6 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 
 It is important, in a personal task-management system, that we can quickly record any task for any level, to track things we would like to do, but if that big list of tasks presents an opportunity to be distracted, to do things that are easier and more fun, than the more important tasks, then the system becomes it's own problem.
 
-The intended outcome of this extension is a tool that will help average users take care of that wich is most important, without being distracted by ideas and ambitions. 
+The intended outcome of this extension is a tool that will help average users take care of that which is most important, without being distracted by ideas and ambitions. 
 
 
