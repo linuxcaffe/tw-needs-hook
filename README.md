@@ -50,8 +50,18 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 
 #### Objective
 
+1. describe this extension well enough to be compelling to a programmer, that it is implemented
+2. implement
+3. make extension easily installable for normal taskwarrior users (maybe pirate hook?)
+4. promote extension
+5. see taskwarrior users take control of the most important tasks, first.
+
 #### Outcomes
 
+"Mazlow mode" might also be called "Responsibility mode". We might all have Higer Goals, dreams of self-actializetions, ambitions to win respect and build esteem, desires to support friends and family, but the truth is that is we don't first take care of the basic needs; phisiological, safety and security, financial stability, then the higher goals will suffer, or become unobtainable. 
 
+It is important, in a personal task-management system, that we can quickly record any task for any level, to track things we would like to do, but if that big list of tasks presents an opportunity to be distracted, to do things that are easier and more fun, than the more important tasks, then the system becomes it's own problem.
+
+The intended outcome of this extension is a tool that will help average users take care of that wich is most important, without being distracted by ideas and ambitions. 
 
 
