@@ -15,6 +15,10 @@ The target-audience for this extension is taskwarrior users who want to keep tra
 A new UDA (User Defined Attribute) is defined, with constrained (string) values 1 - 7
 The "need:" uda would be considered "required" and a value should be assigned to all tasks.
 
+Assign a value like any other uda;
+
+    task 142 mod need:3
+
 #### needs command
 A new command "needs" (the plural) is used to control the filtering, and to report on needs status.
 
@@ -27,6 +31,10 @@ engages an automatically set level based on the lowest (most important) level fo
 
     task needs 0
 is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
+
+#### Objective
+
+#### Outcomes
 
 
 
