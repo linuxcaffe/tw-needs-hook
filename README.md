@@ -58,7 +58,7 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 
 #### Outcomes
 
-"Mazlow mode" might also be called "Responsibility mode". We might all have Higher Goals, dreams of self-actializetions, ambitions to win respect and build esteem, desires to support friends and family, but the truth is that is we don't first take care of the basic needs; phisiological, safety and security, financial stability, then the higher goals will suffer, or become unobtainable. 
+"Mazlow mode" might also be called "Responsibility mode". We might all have Higher Goals, dreams of self-actualization, ambitions to win respect and build esteem, hobbies, side-projects, desires to support friends and family, but the truth is that is we don't first take care of the basic needs; phisiological, safety and security, financial stability, then the higher goals will suffer, or become unobtainable. 
 
 It is important, in a personal task-management system, that we can quickly record any task for any level, to track things we would like to do, but if that big list of tasks presents an opportunity to be distracted, to do things that are easier and more fun, than the more important tasks, then the system becomes it's own problem.
 
