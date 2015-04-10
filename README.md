@@ -27,7 +27,7 @@ A new command "needs" (the plural) is used to control the filtering, and to repo
 
     task needs
 with no other arguments, invokes the needs report, which indicates the current lowest level need,
-the number of tasks in each need-level, and handy reference reminder about wht each level means.
+the number of tasks in each need-level, and handy reference, a reminder about what each level means.
 <pre>
     6      /              Higher Goals                \      (2)
     5     /            Self Actualization              \     (2)
@@ -36,13 +36,14 @@ the number of tasks in each need-level, and handy reference reminder about wht e
  -->2  /   Personal safety, security, health, financial   \  (2)
     1 /     Physiological; Air, Water, Food & Shelter      \ (0)
 </pre>
+To limit the filtering to a specified level (for example, for everything up to and including 3)
 
     task needs 3
 sets the need-hierarchy-level to "3", which is equivalent to 'need <= 3' and applies that to a persistant filter (like context) that will affect all task listings untill it is cleared or changed.
 At this setting, only tasks with need:1 to need:3 will be shown in normal lists.
 
     task needs auto
-engages an automatically set level based on the lowest (most important) level found. This is the real "magic" part, where the task-needs-hierarchy (when fully engaged) self-imposes list filtering, showing the most basic (most important) needs. If you have tasks with need:2 (Safety/ Security) then nothing but need:2 tasks will be listed. Once you complete all of the need:2 level tasks, the next level becomes visible (need:3, Friendship/ Family) and so on.
+engages an automatically set level based on the lowest (most important) level found. This is the real "magic" part, where the task-needs-hierarchy (when fully engaged) self-imposes list filtering, showing the most basic (most important) needs. If you have 2 tasks with need:2 (Safety/ Security, like the mockup report above) then nothing but need:2 tasks will be listed. Once you complete all of the need:2 level tasks, the next level becomes visible (need:3, Friendship/ Family) and so on.
 
     task needs 0
 is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
