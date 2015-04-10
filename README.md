@@ -25,6 +25,18 @@ Assign a value like any other uda;
 #### needs command
 A new command "needs" (the plural) is used to control the filtering, and to report on needs status.
 
+    task needs
+with no other arguments, invokes the needs report, which indicates the current lowest level need,
+the number of tasks in each need-level, and handy reference reminder about wht each level means.
+<pre>
+    6      /              Higher Goals                \      (2)
+    5     /            Self Actualization              \     (2)
+    4    /       Esteem, Respect & Recognition          \   (17)
+    3   /      Love & Belonging, Friends & Family        \  (32)
+ -->2  /   Personal safety, security, health, financial   \  (2)
+    1 /     Physiological; Air, Water, Food & Shelter      \ (0)
+</pre>
+
     task needs 3
 sets the need-hierarchy-level to "3", which is equivalent to 'need <= 3' and applies that to a persistant filter (like context) that will affect all task listings untill it is cleared or changed.
 At this setting, only tasks with need:1 to need:3 will be shown in normal lists.
