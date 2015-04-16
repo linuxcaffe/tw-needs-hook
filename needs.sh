@@ -6,13 +6,19 @@ USAGE="needs [0-6 | auto]"
 OLD_CONTEXT=`task _get rc.old.context`
 if [[ ${1} == '' ]]
 then
+NUM_1=`task need:1 count`
+NUM_2=`task need:2 count`
+NUM_3=`task need:3 count`
+NUM_4=`task need:4 count`
+NUM_5=`task need:5 count`
+NUM_6=`task need:6 count`
 echo "
-    6      /              Higher Goals                \      (2)
-    5     /            Self Actualization              \     (2)
-    4    /       Esteem, Respect & Recognition          \   (17)
-    3   /      Love & Belonging, Friends & Family        \  (32)
- -->2  /   Personal safety, security, health, financial   \  (2)
-    1 /     Physiological; Air, Water, Food & Shelter      \ (0)
+    6      /              Higher Goals                \      ($NUM_6)
+    5     /            Self Actualization              \     ($NUM_5)
+    4    /       Esteem, Respect & Recognition          \    ($NUM_4)
+    3   /      Love & Belonging, Friends & Family        \   ($NUM_3)
+ -->2  /   Personal safety, security, health, financial   \  ($NUM_2)
+    1 /     Physiological; Air, Water, Food & Shelter      \ ($NUM_1)
 "
 exit 0
 elif [[ ${1} == 0 ]]
@@ -55,7 +61,7 @@ WAS_CONTEXT_FILTER=`task _get rc.context.$WAS_CONTEXT`
 echo "filter was $WAS_CONTEXT_FILTER"
 IS_CONTEXT="$WAS_CONTEXT.N$1"
 task config context $IS_CONTEXT
-N_CONTEXT="( not need.over:$1 and ( due,before:yesterday or due.after:tomorrow or until:tomorrow ) )"
+N_CONTEXT=" not ( need.over:$1 and ( due,before:yesterday or due.after:tomorrow or until:tomorrow ) )"
 IS_CONTEXT_FILTER=$WAS_CONTEXT_FILTER$CONJUNCTION$N_CONTEXT
 task config context.$1 $IS_CONTEXT_FILTER
 exit 0
