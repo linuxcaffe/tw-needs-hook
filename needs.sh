@@ -41,7 +41,7 @@ then
 echo "reverting to $WAS_CONTEXT"
 # revert to was-context
 fi
-# ser rc.context=
+# set rc.context=
 exit 0
 
 elif [[ ${1} != [1-6] ]]
@@ -64,7 +64,7 @@ if [[ $WAS_CONTEXT == '' ]]
 then
 CONJUNCTION=''
 IS_CONTEXT=N$1
-echo "No context was set"
+echo "No context was previously set. Context is now N$1"
 
 elif [[ $WAS_CONTEXT == $OLD_CONTEXT ]]
 then
