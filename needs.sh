@@ -2,16 +2,23 @@
 #
 # Taskwarrior Needs Hierarchy
 # a.k.a.Mazlow Mode
+UDA_TYPE=`task _get rc.uda.need.type`
+if [[ $UDA_TYPE != 'string' ]]
+then
+echo "You have to define the need uda, do that now? (y/n)"
+fi
+
 USAGE="needs [0-6 | auto]"
-OLD_CONTEXT=`task _get rc.old.context`
 if [[ ${1} == '' ]]
 then
-NUM_1=`task need:1 count`
-NUM_2=`task need:2 count`
-NUM_3=`task need:3 count`
-NUM_4=`task need:4 count`
-NUM_5=`task need:5 count`
-NUM_6=`task need:6 count`
+NUM_TOTAL=`task +PENDING count`
+NUM_0=`task +PENDING need.none: count`
+NUM_1=`task +PENDING need:1 count`
+NUM_2=`task +PENDING need:2 count`
+NUM_3=`task +PENDING need:3 count`
+NUM_4=`task +PENDING need:4 count`
+NUM_5=`task +PENDING need:5 count`
+NUM_6=`task +PENDING need:6 count`
 echo "
     6      /              Higher Goals                \      ($NUM_6)
     5     /            Self Actualization              \     ($NUM_5)
@@ -20,10 +27,21 @@ echo "
  -->2  /   Personal safety, security, health, financial   \  ($NUM_2)
     1 /     Physiological; Air, Water, Food & Shelter      \ ($NUM_1)
 "
+if [[ $NUM_0 != '' ]]
+then
+echo "You have $NUM_0 of $NUM_TOTAL pending tasks with no need-level set.. fix that!"
+fi
 exit 0
+
 elif [[ ${1} == 0 ]]
 then
 echo "Unsetting needs level"
+if [[ $WAS_CONTEXT != '' ]]
+then
+echo "reverting to $WAS_CONTEXT"
+# revert to was-context
+fi
+# ser rc.context=
 exit 0
 
 elif [[ ${1} != [1-6] ]]
