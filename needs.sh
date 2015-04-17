@@ -21,16 +21,20 @@ NUM_5=`task +PENDING need:5 count`
 NUM_6=`task +PENDING need:6 count`
 # TODO: calculate and display lowest need-level indication ( --> )
 echo "
+            __________________________________________
     6      /              Higher Goals                \      ($NUM_6)
     5     /            Self Actualization              \     ($NUM_5)
-    4    /       Esteem, Respect & Recognition          \    ($NUM_4)
-    3   /      Love & Belonging, Friends & Family        \   ($NUM_3)
+    4    /        Esteem, Respect & Recognition         \    ($NUM_4)
+    3   /       Love & belonging, friends & family       \   ($NUM_3)
  -->2  /   Personal safety, security, health, financial   \  ($NUM_2)
-    1 /     Physiological; Air, Water, Food & Shelter      \ ($NUM_1)
+    1 / Physiological; air, water, food, shelter & medical \ ($NUM_1)
 "
-if [[ $NUM_0 != '' ]]
+if [[ $NUM_0 != '0' ]]
 then
-echo "You have $NUM_0 of $NUM_TOTAL pending tasks with no need-level set.. fix that!"
+echo "
+You have $NUM_0 of $NUM_TOTAL pending tasks with no need-level set.. fix that!
+This extension will only work when most (if not all) have need:1-6
+"
 fi
 exit 0
 
