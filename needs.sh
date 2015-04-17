@@ -19,6 +19,7 @@ NUM_3=`task +PENDING need:3 count`
 NUM_4=`task +PENDING need:4 count`
 NUM_5=`task +PENDING need:5 count`
 NUM_6=`task +PENDING need:6 count`
+# TODO: calculate and display lowest need-level indication ( --> )
 echo "
     6      /              Higher Goals                \      ($NUM_6)
     5     /            Self Actualization              \     ($NUM_5)
@@ -53,8 +54,11 @@ fi
 if [[ ${2} != '' ]]
 then
 echo "Oops! trailing argument!"
+echo "Usage: $USAGE"
 exit 1
 fi
+
+# TODO: fix everything below!! all fscked up!
 
 NEED_LEV=$1
 WAS_CONTEXT=`task _get rc.context`
