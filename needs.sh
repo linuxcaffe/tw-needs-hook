@@ -64,6 +64,16 @@ fi
 
 # TODO: fix everything below!! all fscked up!
 
+# find current context, 
+
+# save if any
+
+# define new context
+
+# apply new context
+
+# reset previous context
+
 NEED_LEV=$1
 WAS_CONTEXT=`task _get rc.context`
 CONJUNCTION=' and '
@@ -81,14 +91,14 @@ fi
 if [[ $WAS_CONTEXT != '' ]]
 then
 echo "Context was $WAS_CONTEXT"
-task config was.context $WAS_CONTEXT
+task confirmation=off config was.context $WAS_CONTEXT
 echo "Setting needs level to $NEED_LEV"
 WAS_CONTEXT_FILTER=`task _get rc.context.$WAS_CONTEXT`
 echo "filter was $WAS_CONTEXT_FILTER"
 IS_CONTEXT="$WAS_CONTEXT.N$1"
-task config context $IS_CONTEXT
-N_CONTEXT=" not ( need.over:$1 and ( due,before:yesterday or due.after:tomorrow or until:tomorrow ) )"
+task confirmation=off config context $IS_CONTEXT
+N_CONTEXT="tw '! ((need.over:$NEED_LEV) and ! (due:today or until:tomorrow))'"
 IS_CONTEXT_FILTER=$WAS_CONTEXT_FILTER$CONJUNCTION$N_CONTEXT
-task config context.$1 $IS_CONTEXT_FILTER
+task confirmation=off config context.$1 $IS_CONTEXT_FILTER
 exit 0
 fi
