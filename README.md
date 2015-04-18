@@ -10,7 +10,24 @@ The needs-hierarchy extension for taskwarrior is based on a theory proposed by A
 
 The idea for this extension is related (complimentary) to the taskwarrior "context" functionality; a persistant filter that stays in place until you change it. It is made using mostly existing task functionality, and adds a new command [+ options]; "needs". The needs-hierarchy is a new scale that helps categorize "importance", and self-imposing focus on the most basic needs, first. It forces the user to ask him/herself the question "why do I need to do this task?", and then to assign a "Mazlow-level" [1-6].
 
-The target-audience for this extension is taskwarrior users who want to keep track of _everything_ but then to avoid being distracted by a huge list of non-critical tasks, until the most basic needs are met.
+The levels correspond to these universal human needs;
+
+1. Physiological; air, water, food, shelter & medical
+   These are things you need to be a living organism, they come first.
+2. Personal safety, security, health, financial
+   A roof over your head, keep your job, heating, food in the fridge
+3. Love & belonging, friends & family
+   The things you need to do in order to have friends and a family
+4. Esteem, respect & recognition
+   Inventions, art-works, play music, get a degree
+5. Self actualization
+   Decide where and how you live, express the things you want to express
+6. Higher goals
+   Big things you want to do with your life
+
+Tracking tasks by needs-level also relates to GTD(tm) Levels of Focus and to goal-setting, in general. As the needs-level increases, the related activities become loftier, with higher purpose. 
+
+The target-audience for this extension is taskwarrior users who want to keep track of _everything_ but then to avoid being distracted by a huge list of non-critical tasks, until the most basic needs are met. On the other side of the spectrum, Mazlow mode is also life-goal tracking mode.
 
 ### How it works
 
