@@ -13,17 +13,17 @@ The idea for this extension is related (complimentary) to the taskwarrior "conte
 The levels correspond to these universal human needs;
 
 1. Physiological; air, water, food, shelter & medical
-   These are things you need to be a living organism, they come first.
+    These are things you need to be a living organism, they come first.
 2. Personal safety, security, health, financial
-   A roof over your head, keep your job, heating, food in the fridge
+    A roof over your head, keep your job, heating, food in the fridge
 3. Love & belonging, friends & family
-   The things you need to do in order to have friends and a family
+    The things you need to do in order to have friends and a family
 4. Esteem, respect & recognition
-   Inventions, art-works, play music, get a degree
+    Inventions, art-works, play music, get a degree
 5. Self actualization
-   Decide where and how you live, express the things you want to express
+    Decide where and how you live, express the things you want to express
 6. Higher goals
-   Big things you want to do with your life
+    Big things you want to do with your life
 
 Tracking tasks by needs-level also relates to GTD(tm) Levels of Focus and to goal-setting, in general. As the needs-level increases, the related activities become loftier, with higher purpose. 
 
