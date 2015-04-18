@@ -13,7 +13,7 @@ The idea for this extension is related (complimentary) to the taskwarrior "conte
 The levels correspond to these universal human needs;
 
 1. Physiological; air, water, food, shelter & medical
-    These are things you need to be a living organism, they come first.
+        These are things you need to be a living organism, they come first.
 2. Personal safety, security, health, financial
     A roof over your head, keep your job, heating, food in the fridge
 3. Love & belonging, friends & family
