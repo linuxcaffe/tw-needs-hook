@@ -23,7 +23,7 @@ The levels correspond to these universal human needs;
 5. Self actualization
     -- Decide where and how you live, express the things you want to express
 6. Higher goals
-    Big things you want to do with your life
+    -- Big things you want to do with your life
 
 Tracking tasks by needs-level also relates to GTD(tm) Levels of Focus and to goal-setting, in general. As the needs-level increases, the related activities become loftier, with higher purpose. 
 
