@@ -1,7 +1,9 @@
 # taskwarrior-needs-hierarchy
 _Persistant filtering based on needs hierarchy (a.k.a. Mazlow Mode)_
 
-    CAVEAT: this script is incomplete and mostly missing error-checking.  if you like the idea, pitch in!
+    CAVEAT: this script is incomplete and without much error-checking.  
+    Back up your data (like always) and give this a whirl. 
+    If you like the idea, pitch in!
 ----
 
 * TL/DR if you have a lower-level need, all higher-level needs are hidden until it is completed/ deleted
