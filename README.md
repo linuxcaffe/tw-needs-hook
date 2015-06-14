@@ -1,7 +1,7 @@
 # taskwarrior-needs-hierarchy
 _Persistant filtering based on needs hierarchy (a.k.a. Mazlow Mode)_
 
-    CAVEAT: this repository is concept, not code (so far), so if you like the idea, pitch in!
+    CAVEAT: this script is incomplete and mostly missing error-checking.  if you like the idea, pitch in!
 ----
 
 * TL/DR if you have a lower-level need, all higher-level needs are hidden until it is completed/ deleted
@@ -33,7 +33,8 @@ The target-audience for this extension is taskwarrior users who want to keep tra
 
 #### need UDA
 A new UDA (User Defined Attribute) is defined, with constrained (string) values 1 - 6
-The "need:" uda would be considered "required" and a value should be assigned to all tasks.
+
+The "need:" uda would be considered "required" (for this method to be effective) and a value should be assigned to all tasks.
 
 Assign a value like any other uda;
 
@@ -68,10 +69,11 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 #### Objective
 
 1. describe this extension well enough to be compelling to a programmer, that it is implemented
-2. implement
+2. implement a proof-of-concept
 3. make extension easily installable for normal taskwarrior users (maybe pirate hook?)
 4. promote extension
-5. see taskwarrior users take control of the most important tasks, first.
+5. improve extension
+6. see taskwarrior users take control of the most important tasks, first.
 
 #### Outcomes
 
