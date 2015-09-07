@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Taskwarrior Needs Hierarchy
 # a.k.a.Mazlow Mode
