@@ -1,7 +1,7 @@
 # taskwarrior-needs-hierarchy commad-alias bindings
 # to "install" them, include this file from your .taskrc, with a line like;
 #
-# include ~/.task/needs-alias.data
+# include ~/.task/need.rc
 # (your path/to/file)
 #
 # These filter aliases are used to temporarily apply the needs-limiting filter,
@@ -19,12 +19,14 @@ uda.need.values=1,2,3,4,5,6
 uda.need.default=4
 
 alias.needs=execute needs
-alias.:n1=! ((need.over:1 or need.under:1) and ! (due:today or until:tomorrow))
-alias.:n2=! ((need.over:2 or need.under:1) and ! (due:today or until:tomorrow))
-alias.:n3=! ((need.over:3 or need.under:1) and ! (due:today or until:tomorrow))
-alias.:n4=! ((need.over:4 or need.under:1) and ! (due:today or until:tomorrow))
-alias.:n5=! ((need.over:5 or need.under:1) and ! (due:today or until:tomorrow))
-alias.:n6=need.any:
+alias.:n1=+PENDING and ( need:1 or due:today or until:tomorrow )
+#NOTE: "over" and "under" are logically reversed here, it has something to do with the 
+# string-type uda, see: TW-1673 
+alias.:n2=+PENDING and (( need.under:0 and need.over:3 ) or due:today or until:tomorrow )
+alias.:n3=+PENDING and (( need.under:0 and need.over:4 ) or due:today or until:tomorrow )
+alias.:n4=+PENDING and (( need.under:0 and need.over:5 ) or due:today or until:tomorrow )
+alias.:n5=+PENDING and (( need.under:3 and need.over:5 ) or due:today or until:tomorrow )
+alias.:n6=+PENDING and (( need.under:3 and need.over:6 )  or due:today or until:tommorow )
 alias.:n0=need.none:
 
 urgency.uda.need.1.coefficient=10
