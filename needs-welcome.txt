@@ -6,14 +6,20 @@ needs-welcome.txt
 
 Congratulations! It appears that tw-needs-hook has been successfully installed!
 
-Next Steps: the needs-hook will help you filter you tasks by need-levels. This can be thought of as "importance" rather than "urgency", and it corresponds to Mazlow's Hierarchy of Needs". ( link ) 
+Next Steps: the needs-hook will help you filter you tasks by need-levels.
+This can be thought of as "importance" rather than "urgency", and it corresponds
+to Mazlow's Hierarchy of Needs". ( link ) 
 
 In order to get started, you first need to assign need:value to all of your tasks.
-Fisrt, if you have tags or projects that you can assign a need-value, do so with a command like;
+Fisrt, if you have tags or projects that you can assign a need-value, do so with
+a command like;
 
     task +PENDING proj:home mod need:2
 
-and repeat this process wher you can think of a filter that corresponds to a need-level. Don't worry about getting this perfect, it's easy to change later. After you have assigned all that you can, I recommend assigning everything else a need:4 (for now) with a command like this;
+and repeat this process wher you can think of a filter that corresponds to a
+need-level. Don't worry about getting this perfect, it's easy to change later.
+After you have assigned all that you can, I recommend assigning everything else
+a need:4 (for now) with a command like this;
 
     task +PENDING need.none: mod need:4
 
