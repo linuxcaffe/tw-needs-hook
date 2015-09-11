@@ -20,13 +20,13 @@ NUM_4=`task rc.verbose= rc.context= +PENDING need:4 count`
 NUM_5=`task rc.verbose= rc.context= +PENDING need:5 count`
 NUM_6=`task rc.verbose= rc.context= +PENDING need:6 count`
 # TODO: calculate and display lowest need-level indication ( --> )
-echo "            __________________________________________
+echo -e "            __________________________________________
     6      /              Higher goals                \      ($NUM_6)
     5     /            Self actualization              \     ($NUM_5)
     4    /        Esteem, respect & recognition         \    ($NUM_4)
     3   /       Love & belonging, friends & family       \   ($NUM_3)
  -->2  /   Personal safety, security, health, financial   \  ($NUM_2)
-    1 / Physiological; air, water, food, shelter & medical \ ($NUM_1)
+    [1;31m1 / Physiological; air, water, food, shelter & medical \ ($NUM_1)[0m
 "
 if [[ $NUM_0 != '0' ]]
 then

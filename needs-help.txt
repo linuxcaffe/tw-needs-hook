@@ -1,0 +1,11 @@
+needs-help.txt
+tw-needs-hook help
+
+Usage:
+    task needs [0-6|auto]	    # to set a persistent max-need-level filter
+                                    # "auto" sets the need level 
+    task [filter] :n[0-6] [report]  # use :n3 to filter s query for need:1-3
+    task check_needs                # to assign need-level (default need:4) to any need.none: tasks
+    task needs-help                 # to show thishelp text
+    task needs-welcome              # to show the welcome/ startup text
+

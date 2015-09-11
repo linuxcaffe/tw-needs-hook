@@ -18,7 +18,7 @@ uda.need.type=string
 uda.need.values=1,2,3,4,5,6
 uda.need.default=4
 
-alias.needs=execute /home/djp/.task/scripts/needs
+alias.needs=execute "$HOME/.task/scripts/needs"
 alias.:n1=+PENDING and ( need:1 or due:today or until:tomorrow )
 #NOTE: "over" and "under" are logically reversed here, it has something to do with the 
 # string-type uda, see: TW-1673 
