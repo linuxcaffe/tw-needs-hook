@@ -25,8 +25,8 @@ alias.:n1=+PENDING and ( need:1 or due:today or until:tomorrow )
 alias.:n2=+PENDING and (( need.under:0 and need.over:3 ) or due:today or scheduled:today or until:tomorrow )
 alias.:n3=+PENDING and (( need.under:0 and need.over:4 ) or due:today or scheduled:today or until:tomorrow )
 alias.:n4=+PENDING and (( need.under:0 and need.over:5 ) or due:today or scheduled:today or until:tomorrow )
-alias.:n5=+PENDING and (( need.under:3 and need.over:5 ) or due:today or scheduled:today or until:tomorrow )
-alias.:n6=+PENDING and (( need.under:3 and need.over:6 ) or due:today or scheduled:today or until:tommorow )
+alias.:n5=+PENDING and (( need.under:2 and need.over:6 ) or due:today or scheduled:today or until:tomorrow )
+alias.:n6=+PENDING and (( need.under:3 and need.over:7 ) or due:today or scheduled:today or until:tommorow )
 alias.:n0=need.none:
 
 urgency.uda.need.1.coefficient=10
