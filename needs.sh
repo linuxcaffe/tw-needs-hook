@@ -17,6 +17,7 @@ NEED_LEV=`task _get rc.needlevel`
       # if yes, 'task config needlevel 0'
         STATUS="nok"
   fi
+NEED_DEFAULT="4"
 
 # TESTS
 # INCLUDE RC
@@ -39,6 +40,15 @@ NUM_3=`task $CONFIG need:3 count`
 NUM_4=`task $CONFIG need:4 count`
 NUM_5=`task $CONFIG need:5 count`
 NUM_6=`task $CONFIG need:6 count`
+
+# NEED FILTERS
+ALLOW_DATES=" or need.none: or due:today or scheduled:today or until:tomorrow"
+N1="(( need.under:0 and need.over:2 )$ALLOW_DATES )"
+N2="(( need.under:0 and need.over:3 )$ALLOW_DATES )"
+N3="(( need.under:0 and need.over:4 )$ALLOW_DATES )"
+N4="(( need.under:0 and need.over:5 )$ALLOW_DATES )"
+N5="(( need.under:2 and need.over:6 )$ALLOW_DATES )"
+N6="(( need:4 or need:5 or need:6 )$ALLOW_DATES )"
 
 # COLORS
 GRAY="[38;5;242m"
@@ -154,10 +164,17 @@ B_TOT=$((B0 + B1 + B2 + B3 + B4 + B5 + B6 ))
 
 if [[ "$B_TOT" -gt "50" ]]
   then
+echo "B4 = $B4" #TMP
   B_TRIM=$((B_TOT - 50 ))
-  B_LEV=B$BIG_L
+  B_LEV=B${BIG_L}
 # TODO fix this leveller
-#  `eval echo \$$B_LEV`=$((BIG_B - B_TRIM))
+TRIM=$(echo "B${BIG_L}")
+B4=$((BIG_B - B_TRIM)) #TMP
+#set \$$TRIM=$((BIG_B - B_TRIM))
+#$(echo $B_LEV)=$((BIG_B - B_TRIM))
+echo "TRIM=$TRIM" #TMP
+echo "B4 = $B4" #TMP
+
  # $(`echo "$B_LEV"`)=$((BIG_B - B_TRIM))
 # DIAGNOSTIC
 #echo "$NUM_TOTAL"
@@ -190,6 +207,7 @@ echo "$B0 $B1 $B2 $B3 $B4 $B5 $B6"
 # AND, AT THE SAME TIME, CALCULATED TASKS SUB-TOTAL
 SPC="    "
 ACT=" -->"
+AUTO="A-->"
 SUB_TOT="0"
 AUTO_LEV="6"
 I6=$SPC
@@ -238,21 +256,27 @@ I0="-"
 # NEEDS-AUTO-LEVEL SELECTION
    if [[ "$NUM_6" != "0" ]]; then
      AUTO_LEV="6"
+     AUTO_N=$N6
    fi
    if [[ "$NUM_5" != "0" ]]; then
      AUTO_LEV="5"
+     AUTO_N=$N5
    fi
    if [[ "$NUM_4" != "0" ]]; then
      AUTO_LEV="4"
+     AUTO_N=$N4
    fi
    if [[ "$NUM_3" != "0" ]]; then
      AUTO_LEV="3"
+     AUTO_N=$N3
    fi
    if [[ "$NUM_2" != "0" ]]; then
      AUTO_LEV="2"
+     AUTO_N=$N2
    fi
    if [[ "$NUM_1" != "0" ]]; then
      AUTO_LEV="1"
+     AUTO_N=$N1
    fi
 
 # TODO: calculate and display lowest need-level indication ( --> )
@@ -267,7 +291,7 @@ $I1${C1}1${Cx}${CB1} /     Physiological; air, water, food, shelter & medical   
   if [[ $NUM_0 != '0' ]]
     then
       echo "     |--------------------------------------------------------------|"
-      echo "     |  You have $NUM_0 of $NUM_TOTAL pending tasks with no need-level set..    |"
+      echo "    x|  Warning: $NUM_0/$NUM_TOTAL pending tasks missing need-level! see: help  |"
   fi
 
   if [[ $NUM_TOTAL/$NUM_0 < '10' ]]
@@ -281,20 +305,12 @@ echo "     \--------------------------------------------------------------/
       \_ Current need level:$NEED_LEV -- enter 0-6, A, help or \"q\" to quit_/ ($SUB_TOT)"
 
 
-# NEED FILTERS
-ALLOW_DATES=" or due:today or scheduled:today or until:tomorrow"
-N1="(( need.under:0 and need.over:2 )$ALLOW_DATES )"
-N2="(( need.under:0 and need.over:3 )$ALLOW_DATES )"
-N3="(( need.under:0 and need.over:4 )$ALLOW_DATES )"
-N4="(( need.under:0 and need.over:5 )$ALLOW_DATES )"
-N5="(( need.under:2 and need.over:6 )$ALLOW_DATES )"
-N6="(( need.under:3 and need.over:7 )$ALLOW_DATES )"
 # NEED FILTERED REPORTS
 
 # PROMPT
 echo
 read -p "   Need>" prompt
- if [[ $prompt =~ [0-6]+ ]]
+ if [[ $prompt =~ [1-6]+ ]]
    then
      if [[ $prompt != $NEED_LEV ]]; then
 	 echo -e "$TMP_HEADER" > $NEEDS_TMP
@@ -324,6 +340,7 @@ read -p "   Need>" prompt
 	   fi
          $TASK rc.verbose= rc.confirmation= config needlevel $prompt
          NEED_LEV=`$TASK _get rc.needlevel`
+	 echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
          echo "Need level changed to $NEED_LEV"
 	 pause 'Press <CR> to continue...'
 	 $TASK needs
@@ -338,11 +355,33 @@ read -p "   Need>" prompt
   if [[ "$prompt" =~ [Aa]+ ]]; then
           $TASK rc.verbose= rc.confirmation= config needlevel $AUTO_LEV
           NEED_LEV=`task _get rc.needlevel`
+	 echo -e "$TMP_HEADER" > $NEEDS_TMP
+              echo -e "alias.ready=$AUTO_N ready" >> $NEEDS_TMP
+              echo -e "alias.ls=$AUTO_N ls" >> $NEEDS_TMP
+	 echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
 	  echo "Need level set to $NEED_LEV automatically" 
 	  pause 'Press <CR> to continue...'
 	  $TASK needs
 	  exit 0
   fi
+  if [[ "$prompt" == "0" ]]; then
+          NEED_LEV=`task _get rc.needlevel`
+        if [[ "$NEED_LEV" == "$prompt" ]]; then
+         echo "Need level is already $NEED_LEV, no changes made"
+	 pause 'Press <CR> to continue...'
+	 $TASK needs
+         exit 0
+       fi
+          $TASK rc.verbose= rc.confirmation= config needlevel $prompt
+          NEED_LEV=`task _get rc.needlevel`
+	 echo -e "$TMP_HEADER" > $NEEDS_TMP
+	 echo -e "uda.need.default=$NEED_DEFAULT" >> $NEEDS_TMP
+	  echo "Need level cleared to $NEED_LEV" 
+	  pause 'Press <CR> to continue...'
+	  $TASK needs
+	  exit 0
+  fi
+
 fi
 # ERROR CHECKING
 

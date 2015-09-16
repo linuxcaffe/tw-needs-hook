@@ -9,12 +9,12 @@
 # Output:
 # - Optional feedback/error.
 
-TASK_BIN=/usr/bin/task
-NEED_LEV=`task _get rc.needlevel`
-if [[ "$NEED_LEVEL" =~ "[1-6]+" ]]; then
+TASK_BIN="/usr/bin/task verbose=no rc.confirmation=no rc.hooks=off"
+NEED_LEV=`$TASK_BIN _get rc.needlevel`
+#if [[ "$NEED_LEVEL" =~ "[1-6]+" ]]; then
 echo "Need-level filterring set to $NEED_LEV or lower"
 exit 0
-fi
+#fi
 
 # Status:
 # - 0:     Non-JSON is feedback.
