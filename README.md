@@ -1,16 +1,17 @@
-# taskwarrior-needs-hierarchy
-_Persistant filtering based on needs hierarchy (a.k.a. Mazlow Mode)_
+# tw-needs-hook
+_Filtering based on needs-level/ importance_
 
-    CAVEAT: this script is incomplete and without much error-checking.  
-    Back up your data (like always) and give this a whirl. 
-    If you like the idea, pitch in!
+    Status: Working well, still under testing
+    
+    CAVEAT: Without much error-checking, and only tested by one person (hint)
+    Back up your data (like always) and give this a whirl. If you like the idea,
+    pitch in!
+
+    See also: needs.txt help file, for requirements, installation, config, etc.
 ----
+The needs-hierarchy extension for taskwarrior is based on a theory proposed by Abraham Maslow in his 1943 paper "A Theory of Human Motivation". see wikipedia: http://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs. Never heard of it? or heard of it and don't think it applies to you? KEEP READING! 
 
-* TL/DR if you have a lower-level need, all higher-level needs are hidden until it is completed/ deleted
-
-The needs-hierarchy extension for taskwarrior is based on a theory proposed by Abraham Maslow in his 1943 paper "A Theory of Human Motivation". see wikipedia: http://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs
-
-The idea for this extension is related (complimentary) to the taskwarrior "context" functionality; a persistant filter that stays in place until you change it. It is made using mostly existing task functionality, and adds a new command [+ options]; "needs". The needs-hierarchy is a new scale that helps categorize "importance", and self-imposing focus on the most basic needs, first. It forces the user to ask him/herself the question "why do I need to do this task?", and then to assign a "Mazlow-level" [1-6].
+When you are adding a new task, ask yourself the question "why do I need to do this task? What need-level does it serve?" and assign a need:1-6.
 
 The levels correspond to these universal human needs;
 
@@ -84,5 +85,6 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 It is important, in a personal task-management system, that we can quickly record any task for any level, to track things we would like to do, but if that big list of tasks presents an opportunity to be distracted, to do things that are easier and more fun, than the more important tasks, then the system becomes it's own problem.
 
 The intended outcome of this extension is a tool that will help average users take care of that which is most important, without being distracted by ideas and ambitions. 
+
 
 

@@ -63,25 +63,25 @@ if [ -f $NEEDS_TMP ]; then
 
 	# if NEEDS_TMP has report.*.filter
 	ANY_REPORT_FILTER=`egrep -o "$RPT_ANY_PATTERN" $NEEDS_TMP`
-	echo "$LINENO: ANY_REPORT_FILTER = $ANY_REPORT_FILTER"  #tmp
+#	echo "$LINENO: ANY_REPORT_FILTER = $ANY_REPORT_FILTER"  #tmp
 	if [[ "$ANY_REPORT_FILTER" != "" ]]; then  # no filters set in rc.tmp
 
 		# if filter has ANY_SEPARATOR
 		ANY_SEPARATOR=`egrep "$RPT_ANY_PATTERN" $NEEDS_TMP |egrep -c "$SEPARATOR_PATTERN"`
-		echo "$LINENO any separator = $ANY_SEPARATOR"  #tmp
+#		echo "$LINENO any separator = $ANY_SEPARATOR"  #tmp
 		if [[ "$ANY_SEPARATOR" != "" ]]; then  # it HAS separators, so from multiple tw-ext sources
 
-			FIELD_3A=`egrep "^report\.$REPORT_A\.filter=" $NEEDS_TMP |sed -r $SED_RM_RPT_PATTERN | cut -d'_' -f3`
-			FIELD_3B=`egrep "^report\.$REPORT_A\.filter=" $NEEDS_TMP |sed -r $SED_RM_RPT_PATTERN | cut -d'_' -f3`
+			FIELD_3A=`egrep "^report\.$REPORT_A\.filter=" $NEEDS_TMP |sed -r $SED_RM_RPT_PATTERN | cut -d'_' -f3 |sed -r 's/\s*$//'`
+			FIELD_3B=`egrep "^report\.$REPORT_A\.filter=" $NEEDS_TMP |sed -r $SED_RM_RPT_PATTERN | cut -d'_' -f3 |sed -r 's/\s*$//'`
 			#FIELD_3B=`egrep "$REPORT_B" $NEEDS_TMP |sed -r sSED_RM_RPT_PATTERN | cut -d'_' -f3 |sed -r 's/^\s*//' |sed -r 's/\s+$//'`
 			#FIELD_3B=`egrep "^report\.$REPORT_B\.filter=" $NEEDS_TMP |sed -r sSED_RM_RPT_PATTERN | cut -d'_' -f3 |sed -r 's/^\s*//' |sed -r 's/\s+$//'`
 					
-			echo "$LINENO field 3a = $FIELD_3A"
-			echo "$LINENO field 3b = $FIELD_3B"
+#			echo "$LINENO field 3a = $FIELD_3A"
+#			echo "$LINENO field 3b = $FIELD_3B"
 		fi
-	else
-		echo "$LINENO FIELD_A = $FIELD_3A"  #tmp
-		echo "$LINENO FIELD_B = $FIELD_3B"  #tmp
+#	else
+#		echo "$LINENO FIELD_A = $FIELD_3A"  #tmp
+#		echo "$LINENO FIELD_B = $FIELD_3B"  #tmp
 	fi
 else
 	echo "No temp file found! this isn't going to work!"
@@ -123,8 +123,8 @@ if [[ "$NUM_3" != "0" ]]; then AUTO_LEV="3"; AUTO_N=$N3; fi
 if [[ "$NUM_2" != "0" ]]; then AUTO_LEV="2"; AUTO_N=$N2; fi
 if [[ "$NUM_1" != "0" ]]; then AUTO_LEV="1"; AUTO_N=$N1; fi
 
-echo "$LINENO: AUTO_N = $AUTO_N"  #tmp
-echo "$LINENO: AUTO_LEV = $AUTO_LEV"  #tmp
+#echo "$LINENO: AUTO_N = $AUTO_N"  #tmp
+#echo "$LINENO: AUTO_LEV = $AUTO_LEV"  #tmp
 
 if [[ "$1" == "" ]]; then
 
@@ -180,8 +180,8 @@ if [[ "$1" == "" ]]; then
 		B4=$((BIG_B - B_TRIM)) #TMP
 		#set \$$TRIM=$((BIG_B - B_TRIM))
 		#$(echo $B_LEV)=$((BIG_B - B_TRIM))
-		echo "TRIM=$TRIM" #TMP
-		echo "B4 = $B4" #TMP
+#		echo "TRIM=$TRIM" #TMP
+#		echo "B4 = $B4" #TMP
 	fi
 
 	# CONVERT PERCENTAGE TO NUMBER OF "_"s
@@ -193,8 +193,8 @@ if [[ "$1" == "" ]]; then
 	G4=`printf '%*s' "$B4" | tr ' ' "_"`
 	G5=`printf '%*s' "$B5" | tr ' ' "_"`
 	G6=`printf '%*s' "$B6" | tr ' ' "_"`
-	echo "$G0 $G1 $G2 $G3 $G4 $G5 $G6"
-	echo "$B0 $B1 $B2 $B3 $B4 $B5 $B6"
+#	echo "$G0 $G1 $G2 $G3 $G4 $G5 $G6"
+#	echo "$B0 $B1 $B2 $B3 $B4 $B5 $B6"
 	# LEVEL INDICATOR (first column)
 	# AND, AT THE SAME TIME, CALCULATED TASKS SUB-TOTAL
 	# TODO FUNCTION: draw_report_indicator
@@ -223,7 +223,18 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 	if [[ $NUM_0 != '0' ]];	then echo "      |--------------------------------------------------------------|"
 	echo "     x|  Warning: $NUM_0/$NUM_TOTAL pending tasks missing need-level! see: help  |"; fi
 
-	if [[ $NUM_TOTAL/$NUM_0 < '10' ]]; then	echo "     |  For tw-needs-hook to work, most (if not all) have need:1-6  |"; fi
+	if [[ $NUM_TOTAL/$NUM_0 < '10' ]]; then	
+		echo "     | Are you seeing a bunch of ++++s above the needs pyramid?     |"
+		echo "     | For this extension to work most (if not all) have need:1-6   |"
+		echo "     |                                                              |"                        
+		echo "     | If you\'re just getting started with the needs-hook, you can |"
+		echo "     | assign need:values using regular task commands. A starting   |"
+		echo "     | level of \"4\" for all tasks is a good idea, with command:   |"
+		echo "     |     task +PENDING need.none: mod need:4                      |"
+		echo "     | then assign a need level for every group you can identify,   |"
+		echo "     |     task +PENDING proj:home mod need:3                       |"
+		echo "     |     task +PENDING proj:work mod need:2, etc                  |"
+	fi
 	echo "      \--------------------------------------------------------------/"
 	echo "       \_ needlevel:$NEED_LEV $GRAY-- enter 0-6,a,help or any other key to quit${Cx} _/ ($SUB_TOT)"
 
@@ -266,7 +277,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _ _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _ _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_DEFAULT" >> $NEEDS_TMP
-			echo "Need level cleared to $NEED_LEV"
+			echo "Need level will be cleared to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -279,7 +290,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N1 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N1 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -292,7 +303,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N2 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N2 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -305,7 +316,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N3 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N3 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -318,7 +329,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N4 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N4 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -331,7 +342,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N5 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N5 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -344,7 +355,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 			echo -e "report.${REPORT_A}.filter=$BASE_A _$N6 _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.${REPORT_B}.filter=$BASE_B _$N6 _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need level changed to $NEED_LEV"
+			echo "Need level will be changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			pause 'Press <CR> to continue...'
 			$TASK needs
 			exit 0
@@ -354,7 +365,7 @@ $I1$C1 1$Cx$CB1 /     Physiological; air, water, food, shelter & medical     \ $
 elif [[ "$1" != "" ]]; then
 	if [[ "$2" != "" ]]; then echo "That's too many arguments"; echo "$USAGE"; echo; exit 1
 
-	elif [[ "$1" == $NEED_LEV ]]; then echo "Need leve is already $NEED_LEV, no changes made"; exit 1
+	elif [[ "$1" == $NEED_LEV ]]; then echo "Need level is already $NEED_LEV, no changes made"; exit 1
 
 	elif [[ "$1" =~ h|help ]]; then echo "No help for you (cat needs.txt)"; exit 0
 	
@@ -367,7 +378,7 @@ elif [[ "$1" != "" ]]; then
 			echo -e "report.ready.filter=$BASE_A _$AUTO_N _$FIELD_3A _" >> $NEEDS_TMP
 			echo -e "report.ls.filter=$BASE_B _$AUTO_N _$FIELD_3B _" >> $NEEDS_TMP
 			echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-			echo "Need-level has been automatically set to $NEED_LEV"
+			echo "Need-level has been automatically set to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 			exit 0
 		else
 			echo "Need level is already set to $NEED_LEV, no changes made"
@@ -382,7 +393,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N1 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N1 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 
 	elif [[ "$1" == "2" ]]; then
@@ -393,7 +404,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N2 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N2 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 
 	elif [[ "$1" == "3" ]]; then
@@ -404,7 +415,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N3 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N3 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 
 	elif [[ "$1" == "4" ]]; then
@@ -415,7 +426,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N4 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N4 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 
 	elif [[ "$1" == "5" ]]; then
@@ -426,7 +437,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N5 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N5 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 
 	elif [[ "$1" == "6" ]]; then
@@ -437,7 +448,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _$N6 _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _$N6 _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_LEV" >> $NEEDS_TMP
-		echo "Need level changed to $NEED_LEV"
+		echo "Need level changed to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 	elif [[ "$1" == "0" ]]; then
 		$TASK rc.verbose= rc.confirmation= config needlevel $1
@@ -447,7 +458,7 @@ elif [[ "$1" != "" ]]; then
 		echo -e "report.ready.filter=$BASE_A _ _$FIELD_3A _" >> $NEEDS_TMP
 		echo -e "report.ls.filter=$BASE_B _ _$FIELD_3B _" >> $NEEDS_TMP
 		echo -e "uda.need.default=$NEED_DEFAULT" >> $NEEDS_TMP
-		echo "Need level reset to $NEED_LEV"
+		echo "Need level reset to $NEED_LEV, for $REPORT_A and $REPORT_B reports"
 		exit 0
 	fi
 
