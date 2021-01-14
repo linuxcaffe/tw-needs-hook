@@ -37,7 +37,7 @@ The target-audience for this extension is taskwarrior users who want to keep tra
 #### need UDA
 A new UDA (User Defined Attribute) is defined, with constrained (string) values 1 - 6
 
-The "need:" uda would be considered "required" (for this method to be effective) and a value should be assigned to all tasks.
+The "need:" uda would be considered "required" (for this method to be effective) and a value should be assigned to all tasks. Occasionally running `check_needs.sh` will assign the default `need:4` to any +PENDING task without a set need level. 
 
 Assign a value like any other uda;
 
@@ -80,11 +80,11 @@ is used to turn off all needs-herarchy filtering, end "Mazlow Mode".
 
 #### Outcomes
 
-"Mazlow mode" might also be called "Responsibility mode". We might all have Higher Goals, dreams of self-actualization, ambitions to win respect and build esteem, hobbies, side-projects, desires to support friends and family, but the truth is that is we don't first take care of the basic needs; phisiological, safety and security, financial stability, then the higher goals will suffer, or become unobtainable. 
+"Mazlow mode" might also be called "Most Important Tasks" mode, or "Responsibility mode". We might all have Higher Goals, dreams of self-actualization, ambitions to win respect and build esteem, hobbies, side-projects, desires to support friends and family, but the truth is that is we don't first take care of the basic needs; phisiological, safety and security, financial stability, then the higher goals will suffer, or become unobtainable. 
 
 It is important, in a personal task-management system, that we can quickly record any task for any level, to track things we would like to do, but if that big list of tasks presents an opportunity to be distracted, to do things that are easier and more fun, than the more important tasks, then the system becomes it's own problem.
 
-The intended outcome of this extension is a tool that will help average users take care of that which is most important, without being distracted by ideas and ambitions. 
+The intended outcome of this extension is a tool that will help average users take care of that which is most *important*, without being distracted by neat ideas and lofty ambitions. If you have tasks for things you need to do to stay alive (need:1) or your personal safety and security, then you shouldn't even be looking at any other tasks! Likewise, tasks  around friends, family and home-life (need:3) should all be done before even looking at tasks for things that might be totally cool and make you rich and famous some day (need:4). You will only ever achieve need:5 tasks (self actualization) with need:1-4 tasks well behind you, and by then, you might know your need:6 (Higher Goals) tasks.. maybe.
 
 
 
